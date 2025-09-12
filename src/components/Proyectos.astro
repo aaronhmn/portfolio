@@ -1,0 +1,30 @@
+---
+import Proyecto from "./Proyecto.astro";
+---
+<div id="proyectos" class="py-20 md:py-28 lg:py-32 scroll-mt-[var(--nav-h)]">
+  <h1 class="flex justify-center items-center md:text-5xl text-4xl font-bold text-[#c9e8ff] mb-12 md:mb-16">
+    Mis proyectos
+  </h1>
+
+  <section class="mx-auto w-full lg:max-w-7xl max-w-xl px-4 sm:px-6 lg:px-8 my-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-32 lg:gap-20 items-stretch">
+      <Proyecto 
+        title="Genesis"
+        description="Tienda online de productos tecnológicos e integración de un back office para los administradores."
+        image="/public/projects/visual-genesis-landing.png"
+        tech={["PHP","JavaScript","HTML","CSS","Sass","MySQL","Bootstrap"]}
+        githubUrl="https://github.com/aaronhmn/TFG"
+        iconClass="w-7 h-7"
+      />
+
+      <Proyecto
+        title="Knowy"
+        description="Plataforma de aprendizaje online para cursos de programación siguiendo la metodología de repetición espaciada."
+        image="/public/projects/visual-knowy.png"
+        tech={["Java","Spring","JavaScript","HTML","Sass","Bootstrap","PostgreSQL","Docker"]}
+        githubUrl="https://github.com/aaronhmn/TFG"
+        iconClass="w-7 h-7"
+      />
+    </div>
+  </section>
+</div>

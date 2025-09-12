@@ -1,0 +1,163 @@
+---
+import Tooltip from '../components/Tooltip.astro';
+import Badge from './Badge.astro';
+---
+
+<div id="contacto" class="py-20 md:py-28 lg:pb-32 lg:pt-24 scroll-mt-[var(--nav-h)] flex flex-col items-center justify-center px-6">
+  <div class="w-full max-w-3xl rounded-2xl p-6 md:p-10 shadow-xl bg-transparent sm:rounded-3xl sm:border-2 sm:border-[#c9e8ff]/40 sm:bg-[#c9e8ff]/10 sm:backdrop-blur-xl sm:overflow-hidden sm:[background-image:radial-gradient(600px_160px_at_-10%_-10%,rgba(201,232,255,.18),transparent),radial-gradient(520px_160px_at_110%_110%,rgba(201,232,255,.12),transparent)] sm:shadow-[0_0_0_1px_rgba(201,232,255,0.25),0_8px_20px_rgba(201,232,255,0.08)]">
+    <h1 class="flex justify-center items-center text-center text-4xl font-bold text-[#ff6622]">
+      ¿A qué esperas?
+    </h1>
+
+    <h2 class="flex justify-center items-center text-center text-3xl font-bold text-[#b9f0d7] mt-3">
+      ¡Contacta conmigo y contrátame!
+    </h2>
+
+    <span class="mt-14 flex justify-center items-center">
+      <Badge client:load class="hover-trigger">
+        <span id="email">aaronhelices@gmail.com</span>
+        <Tooltip text="¡Copiar!">
+          <button id="copy-button" class="relative flex items-center justify-center w-9 h-9">
+            <!-- Icono copiar -->
+            <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" class="absolute transition-opacity duration-300 opacity-100"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+            </svg>
+            <!-- Icono check -->
+            <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" class="absolute transition-opacity duration-300 opacity-0"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18.333 6a3.667 3.667 0 0 1 3.667 3.667v8.666a3.667 3.667 0 0 1 -3.667 3.667h-8.666a3.667 3.667 0 0 1 -3.667 -3.667v-8.666a3.667 3.667 0 0 1 3.667 -3.667zm-3.333 -4c1.094 0 1.828 .533 2.374 1.514a1 1 0 1 1 -1.748 .972c-.221 -.398 -.342 -.486 -.626 -.486h-10c-.548 0 -1 .452 -1 1v9.998c0 .32 .154 .618 .407 .805l.1 .065a1 1 0 1 1 -.99 1.738a3 3 0 0 1 -1.517 -2.606v-10c0 -1.652 1.348 -3 3 -3zm1.293 9.293l-3.293 3.292l-1.293 -1.292a1 1 0 0 0 -1.414 1.414l2 2a1 1 0 0 0 1.414 0l4 -4a1 1 0 0 0 -1.414 -1.414" />
+            </svg>
+          </button>
+        </Tooltip>
+      </Badge>
+    </span>
+
+    <section class="flex justify-center items-center mt-12">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+        <!-- Gmail -->
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aaronhelices@gmail.com"
+          target="_blank"
+          class="flex items-center gap-2 bg-white/90 hover:bg-[#ff6622] text-gray-900 font-bold text-xl py-3 px-6 rounded-lg transition">
+          <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">
+            <title>Gmail</title>
+            <path d="M24 4.5v15c0 .825-.675 1.5-1.5 1.5h-3V9.6L12 15.3 4.5 9.6V21H1.5C.675 21 0 20.325 0 19.5v-15C0 3.675.675 3 1.5 3h1.725L12 9.75 20.775 3H22.5c.825 0 1.5.675 1.5 1.5z"/>
+          </svg>
+          Gmail
+        </a>
+
+        <!-- Outlook -->
+        <a href="https://outlook.office.com/mail/deeplink/compose?to=aaronhelices@gmail.com"
+          target="_blank"
+          class="flex items-center gap-2 bg-white/90 hover:bg-[#ff6622] text-gray-900 text-xl font-bold py-3 px-6 rounded-lg transition">
+          <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">
+            <title>Microsoft Outlook</title>
+            <path d="M19.5 4.5V21h-15V7.5H12V3h7.5v1.5zM12 9H6v10.5h12V9h-6zM9 12h6v1.5H9V12zm0 3h4.5v1.5H9V15z"/>
+          </svg>
+          Outlook
+        </a>
+
+        <!-- Mailto -->
+        <a href="mailto:aaronhelices@gmail.com" class="flex items-center gap-2 mb bg-white/90 hover:bg-[#ff6622] text-gray-900 text-xl font-bold py-3 px-6 rounded-lg transition">
+          <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor">
+            <title>Email</title>
+            <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8.236l8 6 8-6V18H4z"/>
+          </svg>
+          Otro correo
+        </a>
+      </div>
+    </section>
+
+    <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <!-- Llamar -->
+      <a href="tel:+34658298846"
+        class="w-auto sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#b9f0d7] text-gray-900 font-bold text-lg py-3 px-6 transition hover:translate-y-[-1px] hover:shadow-lg">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6.62 10.79a15.054 15.054 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V21a1 1 0 01-1 1C10.85 22 2 13.15 2 2a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/>
+        </svg>
+        Llamar
+      </a>
+
+      <!-- Badge teléfono -->
+      <div class="phone-badge w-auto sm:w-auto flex items-center sm:mt-0 mt-2 justify-between gap-4 border-[3px] border-[#c9e8ff] rounded-xl px-3 py-1 text-[#c9e8ff] transition-colors border-opacity-70">
+        <span id="phone-text" class="font-semibold text-lg select-text">+34 658 29 88 46</span>
+        <Tooltip text="¡Copiar!">
+          <button id="copy-phone-btn" class="relative flex items-center justify-center w-9 h-9 group" aria-label="Copiar teléfono">
+            <!-- Icono copiar -->
+            <svg id="phone-copy-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"
+              class="absolute transition-opacity duration-300 opacity-100">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+              <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+            </svg>
+            <!-- Icono check -->
+            <svg id="phone-check-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+              viewBox="0 0 24 24" fill="currentColor"
+              class="absolute transition-opacity duration-300 opacity-0">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M18.333 6a3.667 3.667 0 0 1 3.667 3.667v8.666a3.667 3.667 0 0 1 -3.667 3.667h-8.666a3.667 3.667 0 0 1 -3.667 -3.667v-8.666a3.667 3.667 0 0 1 3.667 -3.667zm-3.333 -4c1.094 0 1.828 .533 2.374 1.514a1 1 0 1 1 -1.748 .972c-.221 -.398 -.342 -.486 -.626 -.486h-10c-.548 0 -1 .452 -1 1v9.998c0 .32 .154 .618 .407 .805l.1 .065a1 1 0 1 1 -.99 1.738a3 3 0 0 1 -1.517 -2.606v-10c0 -1.652 1.348 -3 3 -3zm1.293 9.293l-3.293 3.292l-1.293 -1.292a1 1 0 0 0 -1.414 1.414l2 2a1 1 0 0 0 1.414 0l4 -4a1 1 0 0 0 -1.414 -1.414" />
+            </svg>
+          </button>
+        </Tooltip>
+      </div>
+    </div>
+
+    <h2 class="flex justify-center items-center text-center text-2xl font-bold text-white/90 mt-14">
+      No dejes pasar esta oportunidad
+    </h2>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const setupCopyButton = (btnSelector, getText) => {
+      const btn = document.querySelector(btnSelector);
+      if (!btn) return;
+
+      const icons = btn.querySelectorAll('svg');
+      const copyIcon = icons[0];
+      const checkIcon = icons[1];
+
+      const tip = btn.parentElement?.querySelector('[data-tooltip]');
+      const originalTipText = tip?.textContent;
+
+      const badge = btn.closest('.hover-trigger, .phone-badge');
+
+      btn.addEventListener('mouseenter', () => {
+        badge?.classList.add('text-[#ff6622]', 'border-[#ff6622]');
+      });
+      btn.addEventListener('mouseleave', () => {
+        badge?.classList.remove('text-[#ff6622]', 'border-[#ff6622]');
+      });
+
+      btn.addEventListener('click', async () => {
+        const text = (typeof getText === 'function' ? getText() : '')?.trim();
+        if (!text) return;
+
+        try {
+          await navigator.clipboard.writeText(text);
+
+          copyIcon?.classList.add('opacity-0');
+          checkIcon?.classList.remove('opacity-0');
+
+          if (tip) tip.textContent = '¡Copiado!';
+          badge?.classList.add('text-[#ff6622]', 'border-[#ff6622]');
+
+          setTimeout(() => {
+            checkIcon?.classList.add('opacity-0');
+            copyIcon?.classList.remove('opacity-0');
+            badge?.classList.remove('text-[#ff6622]', 'border-[#ff6622]');
+            if (tip && originalTipText) tip.textContent = originalTipText;
+          }, 2000);
+        } catch (e) {}
+      });
+    };
+
+    // EMAIL
+    setupCopyButton('#copy-button', () => document.getElementById('email')?.textContent);
+
+    // TELÉFONO
+    setupCopyButton('#copy-phone-btn', () => {
+      const raw = document.getElementById('phone-text')?.textContent || '';
+      return raw.replace(/\s+/g, '');
+    });
+  });
+</script>

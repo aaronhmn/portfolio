@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/space-grotesk';
+import Header from "../components/Header.astro"
+import Carrusel from "../components/Carrusel.astro";
+import Proyectos from '../components/Proyectos.astro';
+import Experience from '../components/Experience.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Arrow from '../components/Arrow.astro';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Portfolio web | aaronhelices</title>
+	</head>
+	<body>
+		<div class="fixed inset-0 -z-10 bg-neutral-950
+            bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
+		</div>
+		<Header />
+		<slot />
+		<Carrusel />
+		<Proyectos />
+		<Experience />
+		<Contact />
+		<Footer />
+		<Arrow />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		color-scheme: light dark;
+		--nav-h: 44px; /* altura navbar móvil */
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html, body { overflow-x: hidden; }
+
+	html {
+		font-family: 'Space Grotesk Variable', system-ui, sans-serif;
+		scroll-behavior: smooth;
+		scroll-padding-top: var(--nav-h); /* evita que el navbar tape el título */
+	}
+
+	.img-perfil {
+		transition: 0.2s;
+		cursor: pointer;
+	}
+
+	@media (min-width: 1024px) {
+		:root {
+			--nav-h: 48px; /* altura navbar desktop */
+		}
+	}
+
+</style>

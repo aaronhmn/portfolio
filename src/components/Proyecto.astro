@@ -1,0 +1,208 @@
+---
+import {
+  siHtml5, siCss, siJavascript, siTypescript, siBootstrap, siTailwindcss, siOpenjdk,
+  siSpring, siSpringboot, siPhp, siPostgresql, siMysql, siAngular, siAstro, siThymeleaf,
+  siDocker, siSass, siSpringsecurity, siPaypal,
+} from "simple-icons";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  githubUrl: string;
+  liveUrl?: string;
+  iconClass?: string;
+  class?: string;
+}
+
+const {
+  title = "Mi Proyecto",
+  description = "Breve descripción del proyecto...",
+  image = "/ruta/a/imagen.png",
+  tech = ["html","css","js","ts","bootstrap","tailwind","java","spring","spring boot","php","postgresql","mysql","angular","astro","thymeleaf","docker"],
+  githubUrl = "#",
+  liveUrl = undefined,
+  iconClass = "w-5 h-5",
+  class: className = "",
+} = Astro.props as Props;
+
+const norm = (s: string) => s.toLowerCase().trim();
+const ICONS: Record<string, any> = {
+  html: siHtml5, css: siCss, js: siJavascript, javascript: siJavascript, ts: siTypescript, typescript: siTypescript,
+  bootstrap: siBootstrap, tailwind: siTailwindcss, java: siOpenjdk, spring: siSpring, springboot: siSpringboot,
+  springsecurity: siSpringsecurity, php: siPhp, postgres: siPostgresql, postgresql: siPostgresql, mysql: siMysql,
+  angular: siAngular, astro: siAstro, thymeleaf: siThymeleaf, docker: siDocker, sass: siSass, paypal: siPaypal,
+};
+const getIcon = (name: string) => ICONS[norm(name)] ?? null;
+---
+
+<article
+  class:list={[
+    "relative w-full rounded-3xl border-2 backdrop-blur-2xl text-white overflow-hidden",
+    "border-[#c9e8ff]/40 bg-[#c9e8ff]/10",
+    "shadow-[0_0_0_1px_rgba(201,232,255,0.25),0_10px_30px_rgba(201,232,255,0.08)]",
+    className,
+  ]}
+  style="background-image:
+    radial-gradient(1000px 200px at -10% -10%, rgba(201,232,255,.18), transparent),
+    radial-gradient(800px 200px at 110% 110%, rgba(201,232,255,.12), transparent);"
+>
+  <!-- halos -->
+  <div class="pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full bg-[#c9e8ff]/15 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-[#c9e8ff]/10 blur-3xl"></div>
+
+  <div class="flex flex-col">
+    <div class="relative overflow-hidden rounded-t-3xl bg-white/5 group max-[375px]:hidden">
+      <div class="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]">
+        <img
+          src={image}
+          alt={`Portada del proyecto ${title}`}
+          loading="lazy"
+          class="absolute inset-0 h-full w-full object-cover object-[center_30%] sm:object-center transform-gpu transition-transform duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-[1.06]" />
+      </div>
+    </div>
+
+    <div class="flex flex-col p-6">
+      <header class="mb-4">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="text-3xl md:text-3xl font-bold leading-tight tracking-tight">{title}</h3>
+
+          <!-- Botón visible en ≤375px -->
+          <button
+            type="button"
+            class="hidden max-[375px]:inline-flex shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 p-1 text-white/90 hover:bg-white/20 transition backdrop-blur" data-open-image={image} aria-label={`Ver imagen de ${title}`}>
+            <!-- Tabler Eye -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path stroke="none" d="M0 0h24v24H0z"/>
+              <circle cx="12" cy="12" r="2" />
+              <path d="M22 12c-2.5 4 -6 7 -10 7s-7.5 -3 -10 -7c2.5 -4 6 -7 10 -7s7.5 3 10 7" />
+            </svg>
+          </button>
+        </div>
+
+        <p class="mt-4 text-base md:text-xl text-white/85 max-w-prose">{description}</p>
+      </header>
+
+      <section class="mt-2">
+        <h4 class="sr-only">Tecnologías</h4>
+        <div class="flex flex-wrap gap-3">
+          {tech.map((t) => {
+            const i = getIcon(t);
+            return (
+              <div class="inline-flex items-center gap-1 rounded-lg px-3 py-[6px] text-sm font-medium border border-[#c9e8ff]/30 bg-[#c9e8ff]/10 backdrop-blur text-white/90" aria-label={`Tecnología ${t}`}>
+                {i ? (
+                  <svg viewBox="0 0 24 24" class={iconClass} role="img" aria-label={i.title}>
+                    <path d={i.path} fill="currentColor" />
+                  </svg>
+                ) : (
+                  <span class="w-5 h-5 grid place-items-center text-[10px] font-semibold bg-white/10 rounded" aria-hidden>{t.slice(0,2).toUpperCase()}</span>
+                )}
+                <span>{t}</span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <div class="mt-auto pt-6 flex flex-wrap items-center gap-3">
+        <a href={githubUrl} target="_blank" rel="noreferrer noopener"
+           aria-label={`Ver ${title} en GitHub`}
+           class="w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-[0.4rem] sm:py-2 text-sm font-semibold transition bg-white/90 text-gray-900 hover:bg-[#ff6622] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.59 2 12.253c0 4.53 2.865 8.367 6.839 9.723.5.094.682-.222.682-.492 0-.243-.01-1.044-.015-1.895-2.782.617-3.37-1.206-3.37-1.206-.455-1.178-1.11-1.49-1.11-1.49-.908-.638.07-.625.07-.625 1.004.073 1.532 1.06 1.532 1.06.892 1.56 2.341 1.11 2.91.849.091-.665.35-1.11.636-1.366-2.221-.26-4.555-1.139-4.555-5.07 0-1.12.388-2.034 1.026-2.75-.103-.261-.446-1.306.098-2.722 0 0 .84-.272 2.75 1.05A9.25 9.25 0 0 1 12 7.66c.85.004 1.706.117 2.505.343 1.909-1.322 2.748-1.05 2.748-1.05.545 1.416.202 2.461.1 2.722.64.716 1.025 1.63 1.025 2.75 0 3.94-2.338 4.807-4.566 5.062.36.322.68.956.68 1.93 0 1.394-.013 2.517-.013 2.86 0 .272.18.59.688.49C19.138 20.616 22 16.78 22 12.253 22 6.59 17.522 2 12 2Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-base sm:text-xl">Ver código en GitHub</span>
+        </a>
+
+        {liveUrl && (
+          <a href={liveUrl} target="_blank" rel="noreferrer noopener"
+             aria-label={`Ver demo de ${title}`}
+             class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold transition bg-[#c9e8ff]/15 text-white hover:bg-[#c9e8ff]/25 border border-[#c9e8ff]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30">
+            <span class="text-xl">Ver web</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- Overlay global: se crea dinámicamente en <body> para evitar recortes -->
+<script is:inline>
+  (function () {
+    // Crea una sola vez el lightbox global
+    let lb = document.getElementById('image-lightbox');
+    if (!lb) {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `
+        <div id="image-lightbox"
+             class="fixed inset-0 z-[9999] hidden opacity-0 transition-opacity duration-200
+                    grid place-items-center bg-black/80 backdrop-blur-sm">
+          <figure class="relative m-0 transform scale-95 transition-transform duration-300 ease-out">
+            <img alt="" src="" class="max-w-[100vw] max-h-[100vh] w-auto h-auto object-contain rounded-xl shadow-2xl" />
+            <button type="button" data-close
+                    class="absolute top-3 right-3 rounded-full bg-white/15 hover:bg-white/25 p-2 text-white backdrop-blur">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </figure>
+        </div>`
+      );
+      lb = document.getElementById('image-lightbox');
+    }
+    const imgEl = lb.querySelector('img');
+    const fig   = lb.querySelector('figure');
+
+    function open(src) {
+      imgEl.src = src;
+      lb.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        lb.classList.add('opacity-100');
+        fig.classList.remove('scale-95');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    function close() {
+      lb.classList.remove('opacity-100');
+      fig.classList.add('scale-95');
+      lb.addEventListener(
+        'transitionend',
+        () => {
+          lb.classList.add('hidden');
+          document.body.style.overflow = '';
+          imgEl.src = '';
+        },
+        { once: true }
+      );
+    }
+
+    // Abrir: botón con data-open-image
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-open-image]');
+      if (btn) {
+        e.preventDefault();
+        e.stopPropagation(); // evita clics “fantasma”
+        open(btn.getAttribute('data-open-image'));
+      }
+    });
+
+    // Cerrar: click fuera o botón X
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb || e.target.closest('[data-close]')) {
+        e.stopPropagation();
+        close();
+      }
+    });
+
+    // Cerrar con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !lb.classList.contains('hidden')) {
+        close();
+      }
+    });
+  })();
+</script>

@@ -1,0 +1,46 @@
+<button
+  id="toTop"
+  aria-label="Subir hacia arriba"
+  class="fixed bottom-24 right-12 z-50 hidden bp1280:grid place-items-center w-14 h-14 rounded-full
+         border border-[#c9e8ff]/40 bg-[#c9e8ff]/0 backdrop-blur-2xl
+         shadow-[0_0_0_1px_rgba(201,232,255,0.25),0_10px_30px_rgba(201,232,255,0.08)]
+         transition-all duration-100
+         opacity-0 translate-y-2 pointer-events-none
+         hover:bg-[#c9e8ff]/30"
+  style="background-image:
+    radial-gradient(600px 150px at -10% -10%, rgba(201,232,255,.18), transparent),
+    radial-gradient(500px 150px at 110% 110%, rgba(201,232,255,.12), transparent);"
+>
+  <!-- Ícono flecha -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" stroke-width="2"
+       class="w-7 h-7 text-[#b9f0d7]">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+  </svg>
+
+  <!-- Glows decorativos -->
+  <div class="pointer-events-none absolute -top-10 -left-10 h-20 w-20 rounded-full bg-[#c9e8ff]/15 blur-2xl"></div>
+  <div class="pointer-events-none absolute -bottom-10 -right-10 h-20 w-20 rounded-full bg-[#c9e8ff]/10 blur-2xl"></div>
+</button>
+
+<script is:inline>
+  const btn = document.getElementById('toTop');
+  const showAt = 250;
+
+  function toggleBtn() {
+    if (window.scrollY > showAt) {
+      btn.classList.remove('opacity-0','translate-y-2','pointer-events-none');
+    } else {
+      btn.classList.add('opacity-0','translate-y-2','pointer-events-none');
+    }
+  }
+
+  window.addEventListener('scroll', toggleBtn, { passive: true });
+  toggleBtn();
+
+  btn.addEventListener('click', () => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) window.scrollTo(0,0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

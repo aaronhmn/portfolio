@@ -1,0 +1,121 @@
+---
+import {
+  siHtml5, siCss, siSass, siBootstrap, siTailwindcss,
+  siJavascript, siTypescript, siAngular, siFigma,
+  siMysql, siPostgresql, siPhp, siOpenjdk,
+  siSpring, siSpringboot, siDocker, siGit, siGithub
+} from "simple-icons";
+
+const FRONTEND = [siHtml5, siCss, siSass, siBootstrap, siTailwindcss, siJavascript, siTypescript, siAngular, siFigma];
+const BACKEND  = [siMysql, siPostgresql, siPhp, siOpenjdk, siSpring, siSpringboot, siDocker, siGit, siGithub];
+
+const ICON_SIZE  = "w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20";
+const ICON_COLOR = "text-[#c9e8ff]/90";
+---
+
+<div id="tecnologias" class="py-20 md:py-28 lg:py-32 scroll-mt-[var(--nav-h)] flex flex-col justify-center">
+  <h1 class="flex justify-center items-center text-center md:text-5xl text-4xl font-bold text-[#c9e8ff] mb-12 md:mb-16">
+    Expositor de tecnologías
+  </h1>
+
+  <section class="py-2 sm:py-8">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="w-full relative rounded-2xl sm:rounded-3xl border border-[#c9e8ff]/40 bg-[#c9e8ff]/10 backdrop-blur-xl sm:backdrop-blur-2xl overflow-hidden shadow-[0_0_0_1px_rgba(201,232,255,0.25),0_8px_20px_rgba(201,232,255,0.08)]" style="background-image: radial-gradient(600px 160px at -10% -10%, rgba(201,232,255,.18), transparent), radial-gradient(520px 160px at 110% 110%, rgba(201,232,255,.12), transparent);">
+        <!-- halos ocultos en móvil -->
+        <div class="hidden sm:block pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full bg-[#c9e8ff]/15 blur-3xl"></div>
+        <div class="hidden sm:block pointer-events-none absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-[#c9e8ff]/10 blur-3xl"></div>
+
+        <div class="px-4 sm:px-6 py-6 sm:py-10">
+          <div class="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_24px,black_calc(100%-24px),transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_24px,black_calc(100%-24px),transparent)] sm:[mask-image:linear-gradient(to_right,transparent,black_80px,black_calc(100%-80px),transparent)] sm:[-webkit-mask-image:linear-gradient(to_right,transparent,black_80px,black_calc(100%-80px),transparent)]">
+            <div class="space-y-20 sm:space-y-28 md:space-y-32">
+              <!-- fila 1 -->
+              <div class="overflow-hidden" data-marquee data-direction="left" data-speed="50">
+                <div data-track class="flex items-center will-change-transform">
+                  <ul data-segment class="flex items-center gap-6 sm:gap-x-16 pr-6 sm:pr-16">
+                    {FRONTEND.map((i) => (
+                      <li class="shrink-0">
+                        <svg viewBox="0 0 24 24" class={`${ICON_SIZE} ${ICON_COLOR}`} aria-hidden>
+                          <path d={i.path} fill="currentColor" />
+                        </svg>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <!-- fila 2 -->
+              <div class="overflow-hidden" data-marquee data-direction="right" data-speed="50">
+                <div data-track class="flex items-center will-change-transform">
+                  <ul data-segment class="flex items-center gap-6 sm:gap-x-16 pr-6 sm:pr-16">
+                    {BACKEND.map((i) => (
+                      <li class="shrink-0">
+                        <svg viewBox="0 0 24 24" class={`${ICON_SIZE} ${ICON_COLOR}`} aria-hidden>
+                          <path d={i.path} fill="currentColor" />
+                        </svg>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        function setupMarquee(m) {
+          const track = m.querySelector('[data-track]');
+          const baseSeg = m.querySelector('[data-segment]');
+          const toRight = m.dataset.direction === 'right';
+          const speed = Number(m.dataset.speed || 70);
+          let anim = null;
+
+          const build = () => {
+            track.innerHTML = '';
+            const seg = baseSeg.cloneNode(true);
+            track.appendChild(seg);
+
+            requestAnimationFrame(() => {
+              const vw = m.clientWidth;
+              const sw = seg.scrollWidth;
+
+              let total = sw;
+              while (total < vw + sw) {
+                const clone = seg.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                track.appendChild(clone);
+                total += sw;
+              }
+
+              if (anim) anim.cancel();
+
+              const distance = sw;
+              const duration = (distance / speed) * 1000;
+
+              track.style.transform = toRight ? `translateX(${-distance}px)` : `translateX(0)`;
+
+              anim = track.animate(
+                toRight
+                  ? [{ transform: `translateX(${-distance}px)` }, { transform: `translateX(0)` }]
+                  : [{ transform: `translateX(0)` }, { transform: `translateX(${-distance}px)` }],
+                { duration, easing: 'linear', iterations: Infinity }
+              );
+            });
+          };
+
+          build();
+
+          let t;
+          window.addEventListener('resize', () => {
+            clearTimeout(t);
+            t = setTimeout(build, 150);
+          });
+        }
+
+        document.querySelectorAll('[data-marquee]').forEach(setupMarquee);
+      });
+    </script>
+  </section>
+</div>
